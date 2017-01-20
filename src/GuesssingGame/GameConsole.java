@@ -1,6 +1,11 @@
 package GuesssingGame;
 import java.util.*;
 public class GameConsole {
+	/**
+	* The play method plays a game using input from a user.
+	* @param The game is guessing the number.
+	* @return And the number is secret.
+	*/
 	public int play(GuessingGame game)
 	{
 		Scanner input = new Scanner(System.in);
