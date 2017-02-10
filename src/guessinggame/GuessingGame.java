@@ -1,4 +1,4 @@
-package GuesssingGame;
+package guessinggame;
 import java.util.Random;
 /**
 * Game of guessing a secret number.-- guess the number until you correct!!
@@ -18,9 +18,7 @@ public class GuessingGame {
 	 */
 	
 	//this is a constructor
-	public GuessingGame(int upperbound)
-	
-	{//this is a constructor
+	public GuessingGame(int upperbound){
 		this.upperBound = upperbound ;
 		secret = getRandomNumber(this.upperBound);
 	}
@@ -29,53 +27,44 @@ public class GuessingGame {
 	 * @param limit is the upper limit for random number
 	 * @return a random number between 1 and limit (inclusive)
 	 */
-	private int getRandomNumber(int limit) 
-	{
+	private int getRandomNumber(int limit){
 		long seed = System.currentTimeMillis( );
 		Random rand = new Random( seed );
 		return rand.nextInt(limit) + 1;
 	}
-	
-	public void setHint(String hint)
-	{
-		this.hint = hint ;
-	}
-	
-	public boolean guess(int number)
-	{	
-		
-		if (number == secret)
-		{
-			
+	/**
+	 * Tell the player if the number is lower or higher
+	 * @param hint is the string that tell the player if the number is lower or higher 
+	 */
+	protected void setHint(int number){
+		if(secret > number){
+			hint = "Sorry, your guess is too small.\n";
+		}
+		else{
+			hint = "Sorry, you're guess is too large.\n";
+		}	
+		}
+	/**
+	 * 
+	 * @param check the number that the player enter whether it's correct or not 
+	 * @return return the boolean of the answer 
+	 */
+	public boolean guess(int number){	
+		counter++;
+		if(secret == number){
+			hint = "Correct. The secret is "+number+".\nYou used "+counter+" guesses.\n";
 			return true;
 		}
-			
-		return false ;
+		else{
+			setHint(number);
+			return false;
+		}
 	}
 	/**
 	* Return a hint based on the most recent guess.
 	* @return hint based on most recent guess
 	*/
-	public String getHint(int number)
-	{
-		if (guess(number)== true)
-		{	
-			hint = "Right!, The secret number is %d\nYou used %d guesses";
-			return String.format(hint, secret,counter);
-		}
-		else if (guess(number)==false)
-		{
-			if (number > secret)
-			{	counter++ ;
-				hint = "Sorry, too large\n";
-				return hint;
-			}
-			else if (number < secret)
-			{	counter++ ;
-				hint = "Sorry, too small\n";
-				return hint;
-			}
-		}
-		return "Sorry, try again";
+	public String getHint(){
+		return hint;
 	}
 }
