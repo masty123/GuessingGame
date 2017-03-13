@@ -27,7 +27,7 @@ public class GuessingGame {
 	 * @param limit is the upper limit for random number
 	 * @return a random number between 1 and limit (inclusive)
 	 */
-	private int getRandomNumber(int limit){
+	int getRandomNumber(int limit){
 		long seed = System.currentTimeMillis( );
 		Random rand = new Random( seed );
 		return rand.nextInt(limit) + 1;
@@ -37,17 +37,17 @@ public class GuessingGame {
 	 * @param hint is the string that tell the player if the number is lower or higher 
 	 */
 	protected void setHint(int number){
-		if(secret > number){
-			hint = "Sorry, your guess is too small.\n";
-		}
-		else{
-			hint = "Sorry, you're guess is too large.\n";
-		}	
+			if(secret > number){
+				hint = "Sorry, your guess is too small.\n";
+			}
+			else{
+				hint = "Sorry, you're guess is too large.\n";
+			}	
 		}
 	/**
 	 * 
 	 * @param check the number that the player enter whether it's correct or not 
-	 * @return return the boolean of the answer 
+	 * @return return the boolean	 of the answer 
 	 */
 	public boolean guess(int number){	
 		counter++;
